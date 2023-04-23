@@ -10,7 +10,7 @@ class Node {
 
 class Tree {
   constructor(array){
-    this.root = buildTree(array)
+    this.root = buildTree(prepareArray(array))
   }
 
 }
@@ -28,7 +28,7 @@ function buildTree(array, start=0, end=array.length-1){
   return node 
 }
 
-const prettyPrint = (node, prefix = '', isLeft = true) => {
+function prettyPrint (node, prefix = '', isLeft = true){
   if (node === null) {
      return;
   }
@@ -41,4 +41,7 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
   }
 }
 
-
+function prepareArray(array){
+  const set = new Set(array.sort((a,b) => a - b))
+  return [...set]
+}
