@@ -13,6 +13,31 @@ class Tree {
     this.root = buildTree(prepareArray(array))
   }
 
+  insert(value){
+    const node = new Node(value)
+    if(!this.root) {
+      this.root = node
+      return
+    }
+
+    let prevN = null
+    let tmpN = this.root
+    while(tmpN){
+      //Ignore duplicated entry, to preserve the Tree
+      if(node.data == tmpN.data) return
+      else if(node.data > tmpN.data){
+        prevN = tmpN
+        tmpN = prevN.right
+      } else {
+        prevN = tmpN
+        tmpN = prevN.left
+      }
+    }
+    //Inserting node to a leaf
+    if(node.data > prevN.data) prevN.right = node
+    else prevN.left = node
+  }
+
 }
 
 function buildTree(array, start=0, end=array.length-1){
