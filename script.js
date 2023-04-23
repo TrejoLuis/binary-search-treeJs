@@ -23,7 +23,7 @@ function buildTree(array, start=0, end=array.length-1){
   const node = new Node(array[mid]) 
 
   node.left = buildTree(array,start,mid-1)
-  node.rigth = buildTree(array,mid+1,end)
+  node.right = buildTree(array,mid+1,end)
 
   return node 
 }
