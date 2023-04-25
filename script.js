@@ -38,6 +38,108 @@ class Tree {
     else prevN.left = node
   }
 
+  delete(value){
+    if(!this.root) return
+    let prevN = this.root
+    let prevDir = null
+    let currN = this.root
+    while(currN !== null){
+      console.log('currData = '+currN.data )
+      console.log('prevData = '+prevN.data)
+      if(value === currN.data){
+        //If the node has no children and it s not root
+        if(!currN.left && !currN.right){
+          //no root
+          prevDir == null 
+            ? this.root = null
+            : prevDir == 'l' 
+              ? prevN.left = null
+              : prevN.right = null
+          // if(prevN.left === currN) prevN.left = null
+          // else if(prevN.right === currN) prevN.right = null
+          // else this.root = null
+          return
+        //Only has left child
+        } else if (currN.left && !currN.right){
+          prevDir == null 
+            ? this.root = currN.left
+            : prevDir == 'l'
+              ? prevN.left = currN.left
+              : prevN.right = currN.left
+          // if(prevN.left === currN) prevN.left = currN.left
+          // else if(prevN.right === currN) prevN.right = currN.left
+          // else this.root = currN.left
+          return
+           
+        //Only has right child
+        } else if (!currN.left && currN.right){
+          prevDir == null 
+            ? this.root = currN.right
+            : prevDir == 'l'
+              ? prevN.left = currN.right
+              : prevN.right = currN.right
+          // if(prevN.left === currN) prevN.left = currN.left
+          // else if(prevN.right === currN) prevN.right = currN.left
+          // else this.root = currN.left
+          return
+
+        //has both children
+        } else {
+          //min from rigth subtree
+          let minN = this.#minNode(currN.right) 
+          // caching minNode data to be swaped with 'delete node'
+          let tempV = minN.data
+          //delete minNode because it'll replace the 'delete node'
+          this.delete(tempV)
+          // asign correct data 
+          currN.data = tempV
+          return
+
+        }
+        // //Node found
+        // if(currN.left && currN.right){
+        //   //Two children
+        //   //Takes the big child, - right
+        //   let bigN = currN.right
+        //   //takes the min node of right side - inorder so check allways the smallest node
+        //   let minN = this.#minNode(bigN)
+        //   //if the delete key is not the root
+        //   if(prevN){
+        //     prevN.right = minN
+        //     minN.left = currN.left
+        //     minN.right = currN.right
+        //     return
+        //   }
+        //   // //if the delete key is the root
+        //   // if(!prevN){
+        //   //   currN.data = minN.data
+        //   //   currN.right = 1
+        //   // }
+        //     
+        // } else if(currN.left || currN.right){
+        //
+        // }
+      } else if(value > currN.data){
+        prevN = currN
+        prevDir = 'r'
+        currN = prevN.right
+      } else {
+        prevN = currN
+        prevDir = 'l'
+        currN = prevN.left
+      }
+    }
+    return false
+  }
+
+  #minNode(node){
+    let currentN = node
+    while(currentN.left){
+      currentN = currentN.left
+    }
+    return currentN
+  }
+
 }
 
 function buildTree(array, start=0, end=array.length-1){
@@ -70,3 +172,7 @@ function prepareArray(array){
   const set = new Set(array.sort((a,b) => a - b))
   return [...set]
 }
+
+////
+const tre = new Tree([20,30,50,40,32,34,36,70,60,65,80,75,85])
+prettyPrint(tre.root)
