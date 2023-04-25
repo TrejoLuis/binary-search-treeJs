@@ -55,9 +55,6 @@ class Tree {
             : prevDir == 'l' 
               ? prevN.left = null
               : prevN.right = null
-          // if(prevN.left === currN) prevN.left = null
-          // else if(prevN.right === currN) prevN.right = null
-          // else this.root = null
           return
         //Only has left child
         } else if (currN.left && !currN.right){
@@ -66,9 +63,6 @@ class Tree {
             : prevDir == 'l'
               ? prevN.left = currN.left
               : prevN.right = currN.left
-          // if(prevN.left === currN) prevN.left = currN.left
-          // else if(prevN.right === currN) prevN.right = currN.left
-          // else this.root = currN.left
           return
            
         //Only has right child
@@ -78,9 +72,6 @@ class Tree {
             : prevDir == 'l'
               ? prevN.left = currN.right
               : prevN.right = currN.right
-          // if(prevN.left === currN) prevN.left = currN.left
-          // else if(prevN.right === currN) prevN.right = currN.left
-          // else this.root = currN.left
           return
 
         //has both children
@@ -96,29 +87,6 @@ class Tree {
           return
 
         }
-        // //Node found
-        // if(currN.left && currN.right){
-        //   //Two children
-        //   //Takes the big child, - right
-        //   let bigN = currN.right
-        //   //takes the min node of right side - inorder so check allways the smallest node
-        //   let minN = this.#minNode(bigN)
-        //   //if the delete key is not the root
-        //   if(prevN){
-        //     prevN.right = minN
-        //     minN.left = currN.left
-        //     minN.right = currN.right
-        //     return
-        //   }
-        //   // //if the delete key is the root
-        //   // if(!prevN){
-        //   //   currN.data = minN.data
-        //   //   currN.right = 1
-        //   // }
-        //     
-        // } else if(currN.left || currN.right){
-        //
-        // }
       } else if(value > currN.data){
         prevN = currN
         prevDir = 'r'
