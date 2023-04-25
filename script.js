@@ -111,6 +111,21 @@ class Tree {
     return null
   }
 
+  levelOrderIterative(callbackFn){
+    if(!this.root) return null
+    let queue = []
+    let output = []
+    queue.push(this.root)
+    while(queue.length > 0){
+      let currentN = queue[0]
+      //Apply callbackFn or just push to array
+      callbackFn ? callbackFn(currentN) : output.push(currentN.data)
+      if(currentN.left) queue.push(currentN.left)
+      if(currentN.right) queue.push(currentN.right)
+      queue.shift()
+    }
+    if(!callbackFn) return output
+  }
 
   #minNode(node){
     let currentN = node
