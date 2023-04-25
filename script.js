@@ -100,6 +100,18 @@ class Tree {
     return false
   }
 
+  find(value){
+    if(!this.root) return null
+    let currentN = this.root
+    while(currentN){
+      if(currentN.data === value) return currentN
+      else if(value > currentN.data) currentN = currentN.right
+      else currentN = currentN.left
+    }
+    return null
+  }
+
+
   #minNode(node){
     let currentN = node
     while(currentN.left){
