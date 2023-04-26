@@ -171,6 +171,17 @@ class Tree {
     return null
   }
 
+  //height first call
+  height(value){
+    let node = this.find(value)
+    if(node) return this.#heightRec(node)
+    else return null
+  }
+  #heightRec(node){
+    if(!node) return -1
+    return Math.max(this.#heightRec(node.left),this.#heightRec(node.right))+1
+  }
+
   //Real recursive Fn
   #lvlOrderRec(callbackFn, array, node){
     if(!node) return null
