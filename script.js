@@ -234,4 +234,8 @@ function prepareArray(array){
 
 ////
 const tre = new Tree([20,30,50,40,32,34,36,70,60,65,80,75,85])
+const n1 = tre.find(50)
+const n2 = tre.find(60)
+const n3 = tre.find(36)
 prettyPrint(tre.root)
+console.log(`n1: ${n1.data}, n2: ${n2.data}, n3: ${n3.data}`)
