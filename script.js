@@ -171,11 +171,16 @@ class Tree {
     return null
   }
 
-  //height first call
-  height(value){
-    let node = this.find(value)
-    if(node) return this.#heightRec(node)
-    else return null
+  isBalanced(){
+    if(!this.root) return null
+    let balanced = true
+    //using preorder to check all nodes
+    this.preorder( node => {
+      let leftH = this.height(node.left)
+      let rightH = this.height(node.right)
+      if(Math.abs(leftH - rightH) > 1) balanced = false
+    })
+    return balanced
   }
 
   height(node){
