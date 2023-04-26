@@ -158,6 +158,18 @@ class Tree {
     if(!callbackFn) return array
   }
 
+  depth(value){
+    if(!this.root) return null
+    let dist = 0
+    let currentN = this.root
+    while(currentN){
+      if(value === currentN.data) return dist
+      if(value > currentN.data) currentN = currentN.right
+      else currentN = currentN.left
+      dist++
+    }
+    return null
+  }
 
   //Real recursive Fn
   #lvlOrderRec(callbackFn, array, node){
