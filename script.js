@@ -133,6 +133,32 @@ class Tree {
     this.#lvlOrderRec(callbackFn, outputArray, this.root)
     if(!callbackFn) return outputArray
   }
+
+  inorder(callbackFn, array = [], node = this.root){
+    if(!node) return null
+    if(node.left) this.inorder(callbackFn, array, node.left)
+    callbackFn ? callbackFn(node) : array.push(node.data)
+    if(node.right) this.inorder(callbackFn, array, node.right)
+    if(!callbackFn) return array
+  }
+
+  preorder(callbackFn, array = [], node = this.root){
+    if(!node) return null
+    callbackFn ? callbackFn(node) : array.push(node.data)
+    if(node.left) this.preorder(callbackFn, array, node.left)
+    if(node.right) this.preorder(callbackFn, array, node.right)
+    if(!callbackFn) return array
+  }
+
+  postorder(callbackFn, array = [], node = this.root){
+    if(!node) return null
+    if(node.left) this.postorder(callbackFn, array, node.left)
+    if(node.right) this.postorder(callbackFn, array, node.right)
+    callbackFn ? callbackFn(node) : array.push(node.data)
+    if(!callbackFn) return array
+  }
+
+
   //Real recursive Fn
   #lvlOrderRec(callbackFn, array, node){
     if(!node) return null
