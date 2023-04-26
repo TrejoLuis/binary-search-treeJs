@@ -188,6 +188,12 @@ class Tree {
     return Math.max(this.height(node.left),this.height(node.right))+1
   }
 
+  rebalance(){
+    if(!this.root) return null
+    //inorder array
+    this.root = buildTree(this.inorder())
+  }
+
   //Real recursive Fn
   #lvlOrderRec(callbackFn, array, node){
     if(!node) return null
