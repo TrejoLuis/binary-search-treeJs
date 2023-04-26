@@ -127,6 +127,20 @@ class Tree {
     if(!callbackFn) return output
   }
 
+  //First call
+  levelOrderRecursive(callbackFn){
+    let outputArray = []
+    this.#lvlOrderRec(callbackFn, outputArray, this.root)
+    if(!callbackFn) return outputArray
+  }
+  //Real recursive Fn
+  #lvlOrderRec(callbackFn, array, node){
+    if(!node) return null
+    callbackFn ? callbackFn(node) : array.push(node.data)
+    if(node.left) this.#lvlOrderRec(callbackFn, array, node.left)
+    if(node.right) this.#lvlOrderRec(callbackFn, array, node.right)
+  }
+
   #minNode(node){
     let currentN = node
     while(currentN.left){
