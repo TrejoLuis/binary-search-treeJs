@@ -158,13 +158,13 @@ class Tree {
     if(!callbackFn) return array
   }
 
-  depth(value){
-    if(!this.root) return null
+  depth(node){
+    if(!this.root || typeof node == 'string' || typeof node == 'number') return null
     let dist = 0
     let currentN = this.root
     while(currentN){
-      if(value === currentN.data) return dist
-      if(value > currentN.data) currentN = currentN.right
+      if(node.data === currentN.data) return dist
+      if(node.data > currentN.data) currentN = currentN.right
       else currentN = currentN.left
       dist++
     }
@@ -177,9 +177,10 @@ class Tree {
     if(node) return this.#heightRec(node)
     else return null
   }
-  #heightRec(node){
-    if(!node) return -1
-    return Math.max(this.#heightRec(node.left),this.#heightRec(node.right))+1
+
+  height(node){
+    if(node == null || typeof node == 'string' || typeof node == 'number') return -1
+    return Math.max(this.height(node.left),this.height(node.right))+1
   }
 
   //Real recursive Fn
