@@ -243,6 +243,14 @@ function prepareArray(array){
   return [...set]
 }
 
+function randomArray(size){
+  return Array.from({ length: size }, () => Math.floor(Math.random() * 1000));
+}
+
+function insertRandomTreeValues(tree,size){
+  if(!(tree instanceof Tree)) return null
+  randomArray(size).forEach(n => tree.insert(n))
+}
 
 function driver(){
   const binT = new Tree(randomArray(15))
