@@ -243,10 +243,24 @@ function prepareArray(array){
   return [...set]
 }
 
-////
-const tre = new Tree([20,30,50,40,32,34,36,70,60,65,80,75,85])
-const n1 = tre.find(50)
-const n2 = tre.find(60)
-const n3 = tre.find(36)
-prettyPrint(tre.root)
-console.log(`n1: ${n1.data}, n2: ${n2.data}, n3: ${n3.data}`)
+
+function driver(){
+  const binT = new Tree(randomArray(15))
+  console.log('Tree created...')
+  prettyPrint(binT.root)
+  console.log(binT.isBalanced() ? 'Tree is balanced' : 'Tree is not balanced')
+  console.log(`Preorder: \n${binT.preorder()}`)
+  console.log(`Inorder: \n${binT.inorder()}`)
+  console.log(`Postorder: \n${binT.postorder()}`)
+  console.log('Unbalancing Tree by insert several values...')
+  insertRandomTreeValues(binT, 100)
+  console.log(binT.isBalanced() ? 'Tree is balanced' : 'Tree is not balanced')
+  console.log('Rebalancing tree...')
+  binT.rebalance()
+  console.log(binT.isBalanced() ? 'Tree is balanced' : 'Tree is not balanced')
+  console.log(`Preorder: \n${binT.preorder()}`)
+  console.log(`Inorder: \n${binT.inorder()}`)
+  console.log(`Postorder: \n${binT.postorder()}`)
+}
+
+
