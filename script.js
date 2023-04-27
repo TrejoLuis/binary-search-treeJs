@@ -1,4 +1,3 @@
-console.log('HELLO')
 
 class Node {
   constructor(data){
@@ -209,8 +208,9 @@ class Tree {
     }
     return currentN
   }
-
 }
+
+driver()
 
 function buildTree(array, start=0, end=array.length-1){
   //base case
