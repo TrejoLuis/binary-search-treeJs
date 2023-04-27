@@ -9,8 +9,8 @@ class Node {
 }
 
 class Tree {
-  constructor(array){
-    this.root = buildTree(prepareArray(array = []))
+  constructor(array = []){
+    this.root = buildTree(prepareArray(array))
   }
 
   insert(value){
